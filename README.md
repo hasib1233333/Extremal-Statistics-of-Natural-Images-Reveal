@@ -1,13 +1,17 @@
-Title:
+Title
 
-Extremal Statistics of Natural Images Reveal Blur Kernel Scale: A Self-Calibrating, Training-Free Theory for Blind Deconvolution
+Probe-Ratio Blur-Scale Estimation Using Extremal Image Statistics
 
-Abstract:
+Abstract
 
-Blind deblurring pipelines — from dark-channel priors to learned kernel-size regressors — all require an estimate of blur-kernel scale before kernel shape can be recovered, yet no method derives this scale from a formal statistical theory. We show a natural image's dark-channel depth — the gap between mean intensity and the mean of local-window minima — contracts under blur following a closed-form power law derived from Fisher–Tippett–Gnedenko extreme value theory. Because a blur kernel's effective radius (root second moment) is exactly additive in quadrature under convolution for any kernel shape — proved here and verified numerically — we eliminate the theory's one content-dependent parameter by probing an image with a second, known blur and reading radius off the ratio of two dark-channel-depth measurements. The resulting closed-form, training-free (calibration-only) estimator needs no labelled corpus, only two universal constants fitted once on five held-out images. Across four real benchmarks (Set14, BSD100, Urban100, CBSD68; 6432 upstream and 216 downstream instances), self-calibration cuts error by 63.9% versus a naive population-calibrated variant (p<10⁻³⁰⁰), and the estimator matches or beats every training-free baseline on accuracy and rank correlation (0.603, best overall), trailing only a supervised regressor. In downstream Richardson–Lucy deconvolution, our estimate yields significantly higher PSNR/SSIM than classical heuristics and the supervised regressor in most comparisons (p<10⁻³), even where its own radius error is not smallest — showing estimator value depends on error structure, not only magnitude. We report this honestly, including conditions where naive baselines win, and discuss the resulting implications.
+Purpose: Blind deblurring needs the spatial scale of the blur kernel before its shape can be recovered, yet existing scale estimators are spectral heuristics or supervised regressors. We ask whether the scale can be read from one image with a closed-form statistic that needs no labelled blur pairs.
 
-Keywords:
+Methods: The effective radius adds in quadrature under convolution of normalized, nonnegative kernels (an exact identity). If we blur the observed image with a known probe and take the ratio of two dark-channel-depth measurements, the image-dependent amplitude cancels, and under an empirical tail-contraction law the ratio has a closed-form inverse. Two constants are fitted once on 25 sharp images.
 
-blind deconvolution, blur kernel estimation, extreme value theory, dark channel prior, image restoration, training-free estimation
+Results: On 6432 synthetic instances from 134 images, the estimator cuts the error of its uncalibrated form by 67% (MAE 2.64 px) but is not detectably better than a fixed radius, and it is 0.8 to 1.0 px worse than tuned supervised regressors. A constant tuned on labelled radii reaches 2.50 px, and shrinkage toward it with a few labelled images reaches 1.98 px. At matched effective radius the kernel shape changes the probe ratio, so radius alone is not sufficient. With a known kernel family, the true radius improves Richardson–Lucy restoration by 2 dB, but estimated radii, ours included, do not beat the blurry input at fixed settings.
 
-Google Drive link (For code and results): https://drive.google.com/file/d/1nchZoK4nf6siOJO2_G6CI6jAGYd6gex2/view?usp=sharing
+Conclusion: The estimator needs no labelled blur pairs, but it is only moderately accurate, and we say where it fails.
+
+Keywords
+
+Blind deconvolution, Blur kernel estimation, Extreme value theory, Dark channel prior, Image restoration
